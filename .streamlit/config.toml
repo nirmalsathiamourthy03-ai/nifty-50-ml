@@ -1,0 +1,11 @@
+[server]
+headless = false
+fileWatcherType = "none"
+port = 8501
+
+[theme]
+base = "dark"
+primaryColor = "#26a69a"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#1a1e29"
+textColor = "#fafafa"
