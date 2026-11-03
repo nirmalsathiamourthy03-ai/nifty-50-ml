@@ -42,11 +42,12 @@ ML nifty_50_pj/
 
 ## 🚀 Key Features
 
-### 1. Dedicated Movement Prediction Focus
-- **Target Variable:** `Target_Direction`
-  $$\text{Target\_Direction}_{t} = \begin{cases} 1 \text{ (UP 🔼)} & \text{if } Close_{t+1} > Close_t \\ 0 \text{ (DOWN 🔽)} & \text{if } Close_{t+1} \le Close_t \end{cases}$$
-- Compares tomorrow's closing price against today's reference close.
-- Produces directional probabilities (e.g. 69.7% UP vs 30.3% DOWN) and signal strength classifications.
+### 1. Dual Movement Prediction Engine
+- **Target 1: Opening Movement (Overnight Gap):**
+  $$\text{Target\_Gap\_Direction}_t = \begin{cases} 1 \text{ (GAP UP 🔼)} & \text{if } Open_{t+1} > Close_t \\ 0 \text{ (GAP DOWN 🔽)} & \text{if } Open_{t+1} \le Close_t \end{cases}$$
+- **Target 2: Full Next Trading Day Direction (Close-to-Close):**
+  $$\text{Target\_Day\_Direction}_t = \begin{cases} 1 \text{ (UP 🔼)} & \text{if } Close_{t+1} > Close_t \\ 0 \text{ (DOWN 🔽)} & \text{if } Close_{t+1} \le Close_t \end{cases}$$
+- **Feature Baseline:** All 16 stationary technical features are computed **strictly from the previous completed day's closing price**. Live intraday prices during open market hours are automatically filtered out.
 
 ### 2. Technical Indicators Suite
 1. **Daily Returns:** Close-to-close returns of NIFTY 50 and India VIX.
@@ -62,20 +63,39 @@ To prevent lookahead bias, training followed a strict **chronological split** (3
 
 ---
 
-## 🧠 Classification Models & Out-of-Sample Leaderboard
+## 🧠 Out-of-Sample Leaderboards (823 Test Days)
 
+### 🌅 A. Opening Movement (Overnight Gap) Leaderboard
 | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | ROC-AUC |
 |---|:---:|:---:|:---:|:---:|:---:|
-| 🏆 **Gradient Boosting Classifier (Selected)** | **52.37%** | **53.71%** | **68.59%** | **60.24%** | **0.5197** |
+| 🏆 **Random Forest Classifier (Selected)** | **59.78%** | **59.78%** | **100.00%** | **74.83%** | **0.5242** |
+| XGBoost Classifier | 59.78% | 59.78% | 100.00% | 74.83% | 0.5192 |
+| LightGBM Classifier | 59.78% | 59.78% | 100.00% | 74.83% | 0.5177 |
+| Gradient Boosting Classifier | 59.66% | 59.76% | 99.59% | 74.70% | 0.5223 |
+| Logistic Regression (Baseline) | 59.30% | 59.58% | 99.19% | 74.45% | 0.5562 |
+
+### 📈 B. Full Day Direction (Close-to-Close) Leaderboard
+| Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | ROC-AUC |
+|---|:---:|:---:|:---:|:---:|:---:|
+| 🏆 **Random Forest Classifier (Selected)** | **52.49%** | **53.80%** | **68.59%** | **60.30%** | **0.5227** |
+| Gradient Boosting Classifier | 52.37% | 53.71% | 68.59% | 60.24% | 0.5197 |
 | LightGBM Classifier | 51.76% | 53.23% | 68.59% | 59.94% | 0.5088 |
-| Random Forest Classifier | 51.15% | 52.74% | 68.82% | 59.72% | 0.5169 |
-| Logistic Regression (Baseline) | 47.75% | 50.26% | 67.90% | 57.76% | 0.4916 |
 | XGBoost Classifier | 49.82% | 51.91% | 62.82% | 56.84% | 0.5120 |
+| Logistic Regression (Baseline) | 47.75% | 50.26% | 67.90% | 57.76% | 0.4916 |
 
-> **Selected Winner:** **Gradient Boosting Classifier** achieves the highest balanced **F1-Score (60.24%)**, **Accuracy (52.37%)**, and **ROC-AUC (0.5197)** on the 823-day out-of-sample test set.
+---
 
-**Confusion Matrix (Out-of-Sample Test Set):**
-$$\begin{pmatrix} \text{True Down (TN)} = 144 & \text{False Up (FP)} = 290 \\ \text{False Down (FN)} = 122 & \text{True Up (TP)} = 267 \end{pmatrix}$$
+## ⚡ Cloud Automation: GitHub Actions (Runs Even When PC Is Off!)
+
+The repository includes a cloud-native workflow [`.github/workflows/daily_eod_pipeline.yml`](.github/workflows/daily_eod_pipeline.yml):
+* **Automatic Schedule:** Runs Monday to Friday at **11:00 UTC (16:30 IST)** on GitHub's cloud servers.
+* **Zero Dependency on Local Machine:** Even if your computer is completely shut down or offline, GitHub Actions:
+  1. Downloads official daily settlement data once NSE closes.
+  2. Bypasses all live ticks and computes 16 features from the closing price.
+  3. Retrains both models and generates predictions for the next trading day.
+  4. Generates an executive daily markdown report (`reports/latest_summary.md`).
+  5. Automatically commits and pushes updated data and forecasts back to your repository (`[skip ci]`).
+  6. Displays the full report directly on GitHub Actions Job Summary.
 
 ---
 
@@ -116,7 +136,16 @@ python auto_watch.py
 python run_pipeline.py
 ```
 
-### 5. Open the Complete Jupyter Notebook
+### 5. Push to GitHub to Activate 24/7 Cloud Automation
+1. Create a new empty repository on your GitHub account (e.g. `nifty50-ml-prediction`).
+2. Double-click **`push_to_github.bat`** and paste your GitHub repository URL (or run in terminal):
+   ```powershell
+   git remote add origin https://github.com/<your-username>/<your-repo>.git
+   git push -u origin main
+   ```
+3. **Done!** GitHub Actions is immediately activated. Every weekday at **16:30 IST**, GitHub's cloud runners will execute your pipeline, update your datasets, re-train models, and commit the daily forecast reports automatically.
+
+### 6. Open the Complete Jupyter Notebook
 ```powershell
 jupyter notebook nifty50_movement_prediction_backend.ipynb
 ```
