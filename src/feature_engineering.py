@@ -52,6 +52,22 @@ def compute_rolling_volatility(df: pd.DataFrame, windows: list[int] = [5, 10, 20
     return data
 
 
+def compute_bollinger_bands(df: pd.DataFrame, window: int = 20, num_std: float = 2.0) -> pd.DataFrame:
+    """
+    Computes standard 20-day Bollinger Bands (Upper, Middle, Lower) and Bandwidth of NIFTY 50.
+    """
+    data = df.copy()
+    rolling_mean = data["NIFTY_Close"].rolling(window=window).mean()
+    rolling_std = data["NIFTY_Close"].rolling(window=window).std()
+
+    data["NIFTY_BB_Middle"] = rolling_mean
+    data["NIFTY_BB_Upper"] = rolling_mean + (num_std * rolling_std)
+    data["NIFTY_BB_Lower"] = rolling_mean - (num_std * rolling_std)
+    data["NIFTY_BB_Width"] = (data["NIFTY_BB_Upper"] - data["NIFTY_BB_Lower"]) / (rolling_mean + 1e-9)
+
+    return data
+
+
 def compute_rsi(df: pd.DataFrame, period: int = 14) -> pd.DataFrame:
     """
     Computes standard 14-day Relative Strength Index (RSI) of NIFTY 50 based on closing prices.
@@ -171,13 +187,16 @@ def engineer_features(df: pd.DataFrame,
     # Step 6: MACD
     data = compute_macd(data, fast=12, slow=26, signal=9)
 
-    # Step 7: Daily Trading Range
+    # Step 7: Bollinger Bands [20-Day, 2 std]
+    data = compute_bollinger_bands(data, window=20, num_std=2.0)
+
+    # Step 8: Daily Trading Range
     data = compute_daily_trading_range(data)
 
-    # Step 8: Create Target direction variable (UP: 1, DOWN: 0)
+    # Step 9: Create Target direction variable (UP: 1, DOWN: 0)
     data = create_target_variables(data)
 
-    # Step 9: Isolate last day sample
+    # Step 10: Isolate last day sample
     # The last row represents the last completed closed trading session.
     # Its features are fully engineered from its closing price, ready to predict the next trading day.
     last_day_sample_df = data.iloc[[-1]].copy()
