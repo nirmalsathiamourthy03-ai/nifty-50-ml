@@ -356,6 +356,81 @@ if os.path.exists(FRONTEND_DIST):
         return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
 
 
+def open_browser_when_ready(port=8501):
+    """Waits until the server is responding, then opens the browser safely."""
+    import time
+    import urllib.request
+    import webbrowser
+
+    for _ in range(40):
+        time.sleep(0.2)
+        try:
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/api/overview", timeout=1):
+                url = f"http://127.0.0.1:{port}"
+                print(f"\n=======================================================")
+                print(f"  NIFTY 50 ML Dashboard is LIVE!")
+                print(f"  Local URL:   {url}")
+                print(f"  Network URL: http://localhost:{port}")
+                print(f"=======================================================\n")
+                webbrowser.open(url)
+                return
+        except Exception:
+            pass
+
+
+def free_port(port=8501):
+    """Terminates any lingering process occupying the specified port in ~0.05s."""
+    import subprocess
+    try:
+        out = subprocess.check_output(f"netstat -ano | findstr :{port}", shell=True, text=True)
+        for line in out.splitlines():
+            parts = line.strip().split()
+            if len(parts) >= 5 and "LISTENING" in parts:
+                pid = parts[-1]
+                subprocess.run(f"taskkill /F /PID {pid}", shell=True, capture_output=True)
+    except Exception:
+        pass
+
+
 if __name__ == "__main__":
+    import socket
+    import threading
     import uvicorn
-    uvicorn.run("api:app", host="0.0.0.0", port=8501, reload=False)
+
+    PORT = 8501
+
+    # Launch browser opener in background thread (opens browser only after port is answering!)
+    threading.Thread(target=open_browser_when_ready, args=(PORT,), daemon=True).start()
+
+    # Create dual-stack socket so both IPv4 (127.0.0.1) and IPv6 (localhost ::1) work on Windows!
+    sock = None
+    try:
+        sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+        sock.bind(("::", PORT))
+        sock.listen(128)
+    except OSError:
+        # Port is busy, free it and retry bind
+        free_port(PORT)
+        try:
+            sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+            sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+            sock.bind(("::", PORT))
+            sock.listen(128)
+        except Exception:
+            sock = None
+    except Exception:
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.bind(("0.0.0.0", PORT))
+            sock.listen(128)
+        except Exception:
+            sock = None
+
+    if sock:
+        config = uvicorn.Config(app, log_level="info", reload=False)
+        server = uvicorn.Server(config)
+        server.run(sockets=[sock])
+    else:
+        uvicorn.run(app, host="0.0.0.0", port=PORT, reload=False)
+

@@ -1,6 +1,6 @@
 {
   "project_type": "NIFTY 50 Dual Movement Prediction (Opening Gap & Full Day Direction)",
-  "best_day_model": "Random Forest Classifier",
+  "best_day_model": "LightGBM Classifier",
   "best_gap_model": "Gradient Boosting Classifier",
   "features_count": 16,
   "test_samples_count": 823

@@ -6,10 +6,7 @@ echo ===================================================
 
 cd /d "%~dp0"
 
-echo [1/3] Ensuring port 8501 is free...
-powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 8501 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"
-
-echo [2/3] Verifying frontend build...
+echo [1/2] Verifying frontend build...
 if not exist "frontend\dist\index.html" (
     echo Building frontend assets...
     cd frontend
@@ -17,12 +14,12 @@ if not exist "frontend\dist\index.html" (
     cd ..
 )
 
-echo [3/3] Launching NIFTY 50 ML Dashboard on http://localhost:8501...
-echo Dashboard will automatically open in your browser.
+echo [2/2] Launching NIFTY 50 ML Dashboard...
+echo Server starting up on http://127.0.0.1:8501...
+echo The dashboard will automatically open in your browser as soon as ready.
 echo (Keep this terminal window open while using the dashboard)
 echo ===================================================
 
-start "" http://localhost:8501
 python api.py
 
 pause

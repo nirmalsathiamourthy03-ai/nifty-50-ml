@@ -603,3 +603,21 @@ with tab_data:
 # Footer
 st.markdown("---")
 st.caption("NIFTY 50 Next Trading Day Movement Prediction System | Pair-programmed with Google DeepMind Antigravity")
+
+
+if __name__ == "__main__":
+    try:
+        from streamlit.runtime import exists as _st_exists
+        is_running_in_streamlit = _st_exists()
+    except Exception:
+        is_running_in_streamlit = False
+
+    if not is_running_in_streamlit:
+        import sys
+        import os
+        print("===================================================")
+        print("  Starting NIFTY 50 Exact Replica Dashboard (FastAPI + React)")
+        print("  Serving on: http://127.0.0.1:8501 (or http://localhost:8501)")
+        print("===================================================")
+        os.system(f'"{sys.executable}" api.py')
+
