@@ -1,5 +1,5 @@
 # 📊 NIFTY 50 Daily EOD Market Summary & Forecast
-**Session Date:** `2026-11-06` | **Generated At:** `2026-11-06 17:50:31 IST`
+**Session Date:** `2026-11-06` | **Generated At:** `2026-11-09 21:20:15 IST`
 
 ---
 
@@ -9,7 +9,7 @@
 | **NIFTY 50 Final Close** | **₹25,030.35** | +2.01% vs prior day |
 | **Day's High / Low** | ₹25,030.35 / ₹24,388.05 | Spread: 642.30 pts |
 | **Day's Open** | ₹24,538.20 | Intraday Move: +2.01% |
-| **India VIX (Market Fear)** | **17.47** | +12.10% (Volatile) |
+| **India VIX (Market Fear)** | **17.47** | +12.13% (Volatile) |
 
 ---
 
