@@ -3,5 +3,5 @@
   "best_day_model": "Random Forest Classifier",
   "best_gap_model": "Random Forest Classifier",
   "features_count": 16,
-  "test_samples_count": 824
+  "test_samples_count": 825
 }
