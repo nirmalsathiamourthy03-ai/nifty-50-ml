@@ -1,25 +1,25 @@
 # 📊 NIFTY 50 Daily EOD Market Summary & Forecast
-**Session Date:** `2026-11-13` | **Generated At:** `2026-11-16 20:50:49 IST`
+**Session Date:** `2026-11-16` | **Generated At:** `2026-11-17 19:40:08 IST`
 
 ---
 
 ## 📌 1. Official Closing Settlement
 | Metric | Value | Reference / Context |
 |---|---|---|
-| **NIFTY 50 Final Close** | **₹25,144.30** | -0.61% vs prior day |
-| **Day's High / Low** | ₹25,246.35 / ₹25,054.40 | Spread: 191.95 pts |
-| **Day's Open** | ₹25,209.85 | Intraday Move: -0.26% |
-| **India VIX (Market Fear)** | **15.50** | -6.74% (Volatile) |
+| **NIFTY 50 Final Close** | **₹25,291.10** | +0.58% vs prior day |
+| **Day's High / Low** | ₹25,337.60 / ₹25,172.10 | Spread: 165.50 pts |
+| **Day's Open** | ₹25,206.15 | Intraday Move: +0.34% |
+| **India VIX (Market Fear)** | **15.68** | +1.16% (Volatile) |
 
 ---
 
 ## 🎯 2. Dual Machine Learning Predictions for Next Trading Session
 
 ### 🌅 A. Opening Movement Prediction (Overnight Gap)
-> Predicts whether tomorrow's session opens **GAP UP** or **GAP DOWN** relative to today's close (₹25,144.30).
+> Predicts whether tomorrow's session opens **GAP UP** or **GAP DOWN** relative to today's close (₹25,291.10).
 
 * **Forecast Verdict:** **🔼 GAP UP**
-* **Probabilities:** **63.6% GAP UP** vs **36.4% GAP DOWN**
+* **Probabilities:** **64.1% GAP UP** vs **35.9% GAP DOWN**
 * **Best Model:** `Random Forest Classifier`
 
 ### 📈 B. Full Next Trading Day Direction (Close-to-Close)
@@ -27,23 +27,23 @@
 
 * **Forecast Verdict:** **🔼 UP**
 * **Signal Bias & Strength:** **Moderate Bullish**
-* **Probabilities:** **58.5% UP** vs **41.5% DOWN**
+* **Probabilities:** **55.8% UP** vs **44.2% DOWN**
 * **Best Model:** `Random Forest Classifier`
 
 ---
 
 ## 🔬 3. Technical Indicator Health
-* **RSI (14-Day):** `76.0` — Overbought (>70)
-* **MACD Histogram:** `+245.73` — Bullish Momentum Acceleration
-* **5-Day SMA Distance:** `-0.04%` from 5-day trend baseline
-* **20-Day SMA Distance:** `+6.35%` from monthly trend baseline
+* **RSI (14-Day):** `77.3` — Overbought (>70)
+* **MACD Histogram:** `+218.72` — Bullish Momentum Acceleration
+* **5-Day SMA Distance:** `+0.33%` from 5-day trend baseline
+* **20-Day SMA Distance:** `+6.46%` from monthly trend baseline
 
 ---
 
 ## 📐 4. Next Session Technical Pivot Levels (Reference)
-* **Resistance 1 (R1):** ₹25,242.30
-* **Central Pivot Point (P):** ₹25,148.35
-* **Support 1 (S1):** ₹25,050.35
+* **Resistance 1 (R1):** ₹25,361.77
+* **Central Pivot Point (P):** ₹25,266.93
+* **Support 1 (S1):** ₹25,196.27
 
 ---
 *Note: This report is automatically generated strictly from confirmed End-of-Day (EOD) closing data without live market tick noise.*
