@@ -21,39 +21,39 @@
     ],
     "metrics": {
       "Logistic Regression": {
-        "Accuracy": 48.61,
-        "Precision": 50.95,
-        "Recall": 68.05,
-        "F1_Score": 58.27,
-        "ROC_AUC": 0.4979
+        "Accuracy": 48.67,
+        "Precision": 51.03,
+        "Recall": 68.12,
+        "F1_Score": 58.35,
+        "ROC_AUC": 0.499
       },
       "Random Forest Classifier": {
-        "Accuracy": 51.88,
-        "Precision": 53.17,
-        "Recall": 73.33,
-        "F1_Score": 61.64,
-        "ROC_AUC": 0.5249
+        "Accuracy": 51.94,
+        "Precision": 53.24,
+        "Recall": 73.39,
+        "F1_Score": 61.72,
+        "ROC_AUC": 0.5259
       },
       "Gradient Boosting Classifier": {
-        "Accuracy": 50.91,
-        "Precision": 52.63,
-        "Recall": 68.97,
-        "F1_Score": 59.7,
-        "ROC_AUC": 0.513
+        "Accuracy": 50.97,
+        "Precision": 52.71,
+        "Recall": 69.04,
+        "F1_Score": 59.78,
+        "ROC_AUC": 0.5134
       },
       "XGBoost Classifier": {
-        "Accuracy": 51.52,
-        "Precision": 53.27,
-        "Recall": 65.52,
-        "F1_Score": 58.76,
-        "ROC_AUC": 0.5153
+        "Accuracy": 51.57,
+        "Precision": 53.36,
+        "Recall": 65.6,
+        "F1_Score": 58.85,
+        "ROC_AUC": 0.5162
       },
       "LightGBM Classifier": {
-        "Accuracy": 51.52,
-        "Precision": 53.05,
-        "Recall": 69.89,
-        "F1_Score": 60.32,
-        "ROC_AUC": 0.5094
+        "Accuracy": 51.57,
+        "Precision": 53.14,
+        "Recall": 69.95,
+        "F1_Score": 60.4,
+        "ROC_AUC": 0.5101
       }
     },
     "feature_importances": {
@@ -82,7 +82,7 @@
         ],
         [
           139,
-          296
+          297
         ]
       ],
       "Random Forest Classifier": [
@@ -92,7 +92,7 @@
         ],
         [
           116,
-          319
+          320
         ]
       ],
       "Gradient Boosting Classifier": [
@@ -102,7 +102,7 @@
         ],
         [
           135,
-          300
+          301
         ]
       ],
       "XGBoost Classifier": [
@@ -112,7 +112,7 @@
         ],
         [
           150,
-          285
+          286
         ]
       ],
       "LightGBM Classifier": [
@@ -122,7 +122,7 @@
         ],
         [
           131,
-          304
+          305
         ]
       ]
     },
@@ -951,7 +951,8 @@
       "2026-11-13",
       "2026-11-16",
       "2026-11-17",
-      "2026-11-18"
+      "2026-11-18",
+      "2026-11-19"
     ],
     "actual_targets": [
       1,
@@ -1778,6 +1779,7 @@
       1,
       1,
       0,
+      1,
       1
     ],
     "best_predictions": [
@@ -2602,6 +2604,7 @@
       0,
       0,
       0,
+      1,
       1,
       1,
       1,
@@ -3432,53 +3435,54 @@
       0.5667213931059433,
       0.5449432075406409,
       0.583802545513026,
-      0.5355763152469233
+      0.5355763152469233,
+      0.607122735785857
     ]
   },
   "opening_gap": {
     "best_model": "Random Forest Classifier",
     "metrics": {
       "Logistic Regression": {
-        "Accuracy": 58.91,
-        "Precision": 59.2,
+        "Accuracy": 58.84,
+        "Precision": 59.12,
         "Recall": 99.18,
-        "F1_Score": 74.14,
+        "F1_Score": 74.09,
         "ROC_AUC": 0.5506
       },
       "Random Forest Classifier": {
-        "Accuracy": 59.39,
-        "Precision": 59.39,
+        "Accuracy": 59.32,
+        "Precision": 59.32,
         "Recall": 100.0,
-        "F1_Score": 74.52,
-        "ROC_AUC": 0.5295
+        "F1_Score": 74.47,
+        "ROC_AUC": 0.5299
       },
       "Gradient Boosting Classifier": {
-        "Accuracy": 59.52,
-        "Precision": 59.56,
+        "Accuracy": 59.44,
+        "Precision": 59.49,
         "Recall": 99.18,
-        "F1_Score": 74.43,
-        "ROC_AUC": 0.5119
+        "F1_Score": 74.37,
+        "ROC_AUC": 0.5109
       },
       "XGBoost Classifier": {
-        "Accuracy": 59.39,
-        "Precision": 59.39,
+        "Accuracy": 59.32,
+        "Precision": 59.32,
         "Recall": 100.0,
-        "F1_Score": 74.52,
-        "ROC_AUC": 0.5155
+        "F1_Score": 74.47,
+        "ROC_AUC": 0.5149
       },
       "LightGBM Classifier": {
-        "Accuracy": 59.39,
-        "Precision": 59.39,
+        "Accuracy": 59.32,
+        "Precision": 59.32,
         "Recall": 100.0,
-        "F1_Score": 74.52,
-        "ROC_AUC": 0.5156
+        "F1_Score": 74.47,
+        "ROC_AUC": 0.5146
       }
     },
     "confusion_matrices": {
       "Logistic Regression": [
         [
           0,
-          335
+          336
         ],
         [
           4,
@@ -3488,7 +3492,7 @@
       "Random Forest Classifier": [
         [
           0,
-          335
+          336
         ],
         [
           0,
@@ -3498,7 +3502,7 @@
       "Gradient Boosting Classifier": [
         [
           5,
-          330
+          331
         ],
         [
           4,
@@ -3508,7 +3512,7 @@
       "XGBoost Classifier": [
         [
           0,
-          335
+          336
         ],
         [
           0,
@@ -3518,7 +3522,7 @@
       "LightGBM Classifier": [
         [
           0,
-          335
+          336
         ],
         [
           0,
@@ -4351,9 +4355,11 @@
       1,
       0,
       0,
+      0,
       0
     ],
     "best_predictions": [
+      1,
       1,
       1,
       1,
@@ -6005,7 +6011,8 @@
       0.6338600497793092,
       0.6225647982852757,
       0.6378461796709172,
-      0.6364651233060697
+      0.6364651233060697,
+      0.6613701448495253
     ]
   }
 }
