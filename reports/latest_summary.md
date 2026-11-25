@@ -1,5 +1,5 @@
 # 📊 NIFTY 50 Daily EOD Market Summary & Forecast
-**Session Date:** `2026-11-23` | **Generated At:** `2026-11-24 21:01:03 IST`
+**Session Date:** `2026-11-23` | **Generated At:** `2026-11-25 20:25:03 IST`
 
 ---
 
